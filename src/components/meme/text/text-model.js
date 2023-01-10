@@ -34,7 +34,8 @@ const textSchema = new Schema({
     }
 }, 
 {
-    timestamps: true
+    timestamps: true,
+    versionKey: false
 })
 
 const Text = mongoose.model('Text', textSchema)
