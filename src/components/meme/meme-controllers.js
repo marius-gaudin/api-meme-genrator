@@ -1,6 +1,6 @@
-import Meme from '#components/meme/meme-model.js';
-import Text from '#components/meme/text/text-model.js';
-import Joi from 'joi';
+import Meme from '#components/meme/meme-model.js'
+import Text from '#components/meme/text/text-model.js'
+import Joi from 'joi'
 import * as userService from '#services/user-service.js'
 
 export async function createMeme(ctx) {
@@ -13,13 +13,8 @@ export async function createMeme(ctx) {
         if(error) return ctx.badRequest({ message: error.message })
         const userId = await userService.getCurrentUserIdByToken(ctx.request.header.authorization)
         const newMeme = await Meme.create({ user: userId, image: value.image })
-
-        return ctx.ok({
-            'meme': {
-                '_id': newMeme._id,
-                'image': newMeme.image
-            }
-        })
+        const meme = await Meme.findById(newMeme._id).select('-user')
+        return ctx.ok(meme)
     } catch (e) {
         return ctx.badRequest({ message: e.message })
     }
@@ -29,7 +24,7 @@ export async function getMemes(ctx) {
     try {
         const userId = await userService.getCurrentUserIdByToken(ctx.request.header.authorization)
         const memes = await Meme.find({ user: userId }).sort({ updatedAt: 'desc' }).select('-user')
-        return ctx.ok({ memes })
+        return ctx.ok(memes)
     } catch (e) {
         return ctx.badRequest({ message: e.message })
     }
@@ -42,7 +37,9 @@ export async function getMemeById(ctx) {
         const meme = await Meme.findOne({ user: userId, _id: memeId }).select('-user')
         if(meme === null) return ctx.badRequest({ message: 'memeId incorrect' })
         const texts = await Text.find({ meme: memeId })
-        return ctx.ok({ meme, texts })
+        const result = JSON.parse(JSON.stringify(meme)) 
+        result.texts = texts
+        return ctx.ok(result)
     } catch (e) {
         return ctx.badRequest({ message: e.message })
     }
@@ -69,7 +66,7 @@ export async function createText(ctx) {
         if(meme === null) return ctx.badRequest({ message: 'memeId incorrect' })
 
         const textValidation = Joi.object({
-            text: Joi.string().required(),
+            text: Joi.string(),
             x: Joi.number().required(),
             y: Joi.number().required(),
             color: Joi.string().required(),
@@ -81,7 +78,7 @@ export async function createText(ctx) {
         if(error) return ctx.badRequest({ message: error.message })
         value.meme = meme._id
         const text = await Text.create(value)
-        return ctx.ok({ text })
+        return ctx.ok(text)
    
     } catch (e) {
         return ctx.badRequest({ message: e.message })

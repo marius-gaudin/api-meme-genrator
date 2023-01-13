@@ -10,7 +10,7 @@ const textSchema = new Schema({
     },
     text: {
         type: String,
-        required: true
+        default: ''
     },
     x: {
         type: Number,
