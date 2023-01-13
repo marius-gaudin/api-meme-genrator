@@ -1,4 +1,4 @@
-import '#config/database.js'
+import './src/config/database.js'
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 import respond from 'koa-respond'
