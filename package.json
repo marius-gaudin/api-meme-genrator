@@ -37,8 +37,8 @@
     "nodemon": "^2.0.20"
   },
   "imports": {
-    "#config/*.js": "./src/config/*.js",
-    "#routes/*.js": "./src/routes/*.js",
+    "#config/*.js": "../../src/config/*.js",
+    "#routes/*.js": "../../src/routes/*.js",
     "#services/*.js": "./src/services/*.js",
     "#components/*.js": "./src/components/*.js"
   }
