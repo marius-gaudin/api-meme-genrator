@@ -1,7 +1,7 @@
-import Meme from '#components/meme/meme-model.js'
-import Text from '#components/meme/text/text-model.js'
+import Meme from './meme-model.js'
+import Text from './text/text-model.js'
 import Joi from 'joi'
-import * as userService from '#services/user-service.js'
+import * as userService from '../../services/user-service.js'
 
 export async function createMeme(ctx) {
     try {

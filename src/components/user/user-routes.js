@@ -1,5 +1,5 @@
 import Router from '@koa/router'
-import * as userController from '#components/user/user-controllers.js'
+import * as userController from './user-controllers.js'
 const users = new Router()
 
 users.post('/register', userController.register)

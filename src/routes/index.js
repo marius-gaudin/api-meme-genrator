@@ -1,6 +1,6 @@
 import Router from '@koa/router'
-import userRoutes from '#components/user/user-routes.js'
-import memeRoutes from '#components/meme/meme-routes.js'
+import userRoutes from '../components/user/user-routes.js'
+import memeRoutes from '../components/meme/meme-routes.js'
 
 const API_V1_ROUTER_UNPROTECTED = new Router({ prefix: '/api/v1' })
 const API_V1_ROUTER_PROTECTED = new Router({ prefix: '/api/v1' })

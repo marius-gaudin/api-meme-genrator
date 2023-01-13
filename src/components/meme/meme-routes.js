@@ -1,5 +1,5 @@
 import Router from '@koa/router'
-import * as memeController from '#components/meme/meme-controllers.js'
+import * as memeController from './meme-controllers.js'
 const memes = new Router()
 
 memes.post('/', memeController.createMeme)

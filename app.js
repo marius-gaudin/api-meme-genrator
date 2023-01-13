@@ -4,7 +4,7 @@ import bodyParser from 'koa-bodyparser'
 import respond from 'koa-respond'
 import cors from '@koa/cors'
 import jwt from 'koa-jwt'
-import { API_V1_ROUTER_UNPROTECTED, API_V1_ROUTER_PROTECTED, API} from '#routes/index.js'
+import { API_V1_ROUTER_UNPROTECTED, API_V1_ROUTER_PROTECTED, API} from './src/routes/index.js'
 
 const app = new Koa()
 
