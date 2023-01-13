@@ -7,8 +7,6 @@ memes.get('/', memeController.getMemes)
 memes.get('/:memeId', memeController.getMemeById)
 memes.delete('/:memeId', memeController.deleteMeme)
 
-memes.post('/:memeId/text', memeController.createText)
-memes.put('/:memeId/text/:textId', memeController.updateText)
-memes.delete('/:memeId/text/:textId', memeController.deleteText)
+memes.put('/:memeId/texts', memeController.saveTexts)
 
 export default memes

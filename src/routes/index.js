@@ -6,7 +6,7 @@ const API_V1_ROUTER_UNPROTECTED = new Router({ prefix: '/api/v1' })
 const API_V1_ROUTER_PROTECTED = new Router({ prefix: '/api/v1' })
 const API = new Router()
 
-API.get('/', (ctx)=>{ctx.ok('ok')})
+API.get('/', (ctx)=>{ctx.ok('API ok')})
 API_V1_ROUTER_UNPROTECTED.use('/users', userRoutes.routes(), userRoutes.allowedMethods())
 API_V1_ROUTER_PROTECTED.use('/memes', memeRoutes.routes(), memeRoutes.allowedMethods())
 
